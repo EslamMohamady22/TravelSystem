@@ -1,0 +1,80 @@
+﻿
+@using Microsoft.AspNet.Identity;
+@using WebApplication1.Models;
+
+@model IEnumerable<JobOfferWebiste.Models.CommentsModel>
+@{
+    ViewBag.Title = "View_comment";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+<div class="thumbnail" style="text-align: left; margin-left: -60px; margin-right: -70px; background-color: #818181 ">
+    <h1>View All Requests</h1>
+</div>
+
+<div class="panel panel-info " style="padding: 2px; width: 1270px; margin-right: -70px; margin-left: -70px; text-align: left; background-color:lightgray">
+
+    <div class="Row panel-body " style="text-align: left ; ">
+
+        @foreach (var item in Model)
+        {
+
+            var db = new ApplicationDbContext();
+            var UserId = User.Identity.GetUserId();
+            var currentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+            @Html.AntiForgeryToken()
+
+            if (currentUser.UserType == "Traveler")
+            {
+                if (item.AgencycommentMassage != null)
+                {
+                    <div class="col-md-3 thumbnail" style="margin-left: 2px; margin-top: 5px; margin-bottom: 100px; height: 200px; width: 615px; text-align: left; ">
+                        <h1> @Html.DisplayFor(modelItem => item.user.UserName)</h1>
+                        <b style="background-color:powderblue; font-size:xx-large"> @Html.DisplayFor(modelItem => item.AgencycommentMassage)</b>
+                        <h4> @Html.DisplayFor(modelItem => item.job.TripTitle)</h4>
+                        <h5> @Html.DisplayFor(modelItem => item.commentDate)</h5>
+                    </div>
+                }
+            }
+
+            if (currentUser.UserType == "Agency")
+            {
+                if (item.commentMassage != null)
+                {
+                    <div class="col-md-3 thumbnail" style="margin-left: 2px; margin-top: 5px; margin-bottom: 100px; height: 200px; width: 615px; text-align: left; ">
+                        <h1> @Html.DisplayFor(modelItem => item.user.UserName)</h1>
+                        <b style="background-color:powderblue; font-size:xx-large"> @Html.DisplayFor(modelItem => item.commentMassage)</b>
+                        <h4> @Html.DisplayFor(modelItem => item.job.TripTitle)</h4>
+                        <h5> @Html.DisplayFor(modelItem => item.commentDate)</h5>
+                    </div>
+                }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        }
+
+    </div>
+</div>
+
+
+
+
+
+
+
+
+

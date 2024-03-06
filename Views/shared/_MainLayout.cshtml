@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width ,initial scale = 1" />
+    <title>@ViewBag.Title</title>
+    <link href="~/content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/content/style1.css" rel="stylesheet" />
+</head>
+<body>
+    <div>
+        <!--navpar-->
+        <nav class="navbar navbar-default navbar-fixed-top>
+            <div class="container">
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed" data-togel="collapse" data-target="#navbar">
+                        <span class="icon_bar"></span>
+                        <span class="icon_bar"></span>
+                        <span class="icon_bar"></span>
+                    </button>
+                    <a href="#" class="navbar-brand">
+
+                        <img src="~/Images/d5512dbd-d112-41a2-a005-ce7aa4e9b145.jpg" class="logo_size"  />
+                    </a>
+                </div>
+                <div id="navbar" class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                       
+                       
+
+                        <li>
+
+                            @using (Html.BeginForm("SearchItem", "Home", FormMethod.Post))
+                            {
+
+                                <input type="text" name="search" placeholder="search for trips.." id="SearchName" class="form-control" />
+                            }
+                        </li>
+
+
+                        
+
+
+                    </ul>
+                    <!--patetial login-->
+                    @Html.Partial("_login")
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            <div class="row">
+                @RenderBody()
+            </div>
+        </div>
+
+
+
+
+
+
+        <!--fopter-->
+
+        <footer class="myfooter">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h3>
+                            <i class="glyphicon glyphicon-question-sign"></i>
+                            Who are we
+                        </h3>
+                        <span style="color:white">
+                            السلام عليكم ورحمة الله وبركاته، تسعدنا زيارتكم لنا على المدونة الشخصية لخالد السعداني حيث يتم بث مختلف مواده المكتوبة والمرئية المتعلقة بعالم البرمجة
+                        </span>
+                    </div>
+                    <div class="col-md-4">
+                        <h3>
+                            <i class="glyphicon glyphicon-globe"></i>
+                            Important Links
+                        </h3>
+                        <ul>
+                            <li><a href="#">domestic trip</a></li>
+                            <li><a href="#">foreign trips</a></li>
+                            <li><a href="~/Home/domestic trip">All Trips</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <i></i>
+                        <h3>
+                            <i class="glyphicon glyphicon-envelope"></i>
+                            Connect with us
+                        </h3>
+                        <ul>
+                            <li><a href="#">صفحتنا على الفيسبوك</a></li>
+                            <li><a href="#">تابعنا على تويتر</a></li>
+                            <li><a href="#">شاهدنا على اليوتيوب</a></li>
+                            <li><a href="#">اترك لنا رساله</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="subfooter">
+                <p>All rights reserved to the trips site 2021</p>
+            </div>
+        </footer>
+
+
+        <script src="~/Scripts/jquery.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+
+
+        @RenderSection("scripts", required: false)
+
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+    </div>
+</body>
+</html>

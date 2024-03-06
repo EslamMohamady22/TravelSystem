@@ -1,0 +1,60 @@
+﻿@model IEnumerable<JobOfferWebiste.Models.Job>
+
+@{
+    ViewBag.Title = "SearchItem";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+}
+
+
+
+
+<div class="panel panel-info " style="padding: 2px; width: 1270px; margin-right: -70px; margin-left: -70px; text-align: left ">
+    <div class="panel-heading" style="text-align: left "><h1>Results</h1></div>
+
+
+
+    <div class="Row panel-body " style="text-align: left ; ">
+
+        @foreach (var SubItem in Model)
+        {
+        <div class="col-md-3 thumbnail" style="margin-left: 2px; margin-top: 5px; margin-bottom: 100px; height: 620px; width: 400px; text-align: left ">
+            <img style="height:285px; width:390px" src="~/Uploads/@SubItem.TripImage" />
+            <h3>TripTitle : @Html.DisplayFor(modelItem => SubItem.TripTitle)</h3>
+            <h4>AgencyName : @Html.DisplayFor(modelItem => SubItem.AgencyName)</h4>
+            <h5>TripDetails : @Html.DisplayFor(modelItem => SubItem.TripDetails)</h5>
+            <h5>TripDate : @Html.DisplayFor(modelItem => SubItem.TripDate)</h5>
+            <h5>TripDestination : @Html.DisplayFor(modelItem => SubItem.TripDestination)</h5>
+            <h3>TripDestination : @Html.DisplayFor(modelItem => SubItem.Price)</h3>
+
+
+           <br />
+            <hr />
+          
+
+
+            @Html.ActionLink("Details", "Detailse", new { JopId = SubItem.Id }, new { @class = "btn btn-info" })
+
+
+        </div>
+
+
+        }
+    </div>
+</div>
+
+
+
+
+<script>
+    $(function () {
+        $(".like").click(function () {
+            var input = $(this).find('.qty1');
+            input.val(parseInt(input.val()) + 1);
+        });
+
+        $(".dislike").click(function () {
+            var input = $(this).find('.qty2');
+            input.val(input.val() - 1);
+        });
+    });
+</script>

@@ -1,0 +1,109 @@
+﻿
+@using Microsoft.AspNet.Identity;
+@using WebApplication1.Models;
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("logoff", "Account", FormMethod.Post, new { id = "logoff" }))
+    {
+        var db = new ApplicationDbContext();
+        var UserId = User.Identity.GetUserId();
+        var currentUser = db.Users.Where(a=> a.Id == UserId).SingleOrDefault();
+        @Html.AntiForgeryToken()
+<ul class="nav navbar-nav navbar-right">
+    <li>
+        @Html.ActionLink(User.Identity.GetUserName(), "Index", "Manage")
+    </li>
+    <li>
+        <a href="javascript:document.getElementById('logoff').submit()">Logout</a>
+    </li>
+    <li>
+        <span id="open" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="~/Home/Index">
+                <i class="glyphicon glyphicon-home"></i>
+
+                Home
+            </a>
+
+
+            @if (currentUser.UserType == "Traveler")
+            {
+                <a href="~/Account/EditProfile">
+                    Profile
+                </a>
+                <a href="~/Home/GetJobsByUser">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    My Saved Posts
+                </a>
+                <a href="~/Home/ViewAgencycomment">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    All Responses To The Questions
+                </a>
+            }
+            @if (currentUser.UserType == "Agency")
+            {
+
+                <a href="~/Account/EditProfile">
+                    Profile
+                </a>
+                <a href="~/Home/GetJobsByPublisher">
+                    All Posts Made By Me
+                </a>
+                <a href="~/Jobs/Create">
+                    Create New Post
+                </a>
+                <a href="~/Home/ViewAgencycomment">
+                    Received questions
+                </a>
+            }
+
+            @if (currentUser.UserType == "Admins")
+            {
+
+
+                <a href="~/Home/AllUsers">
+                    Show All Users
+                </a>
+                <a href="~/Jobs/Index">
+                    Show All Posts
+                </a>
+                <a href="~/Categories/Index">
+                    Show All Categories
+                </a>
+                <a href="~/Home/ViewAgencycomment">
+                    <i class="glyphicon glyphicon-info-sign"></i>
+                    Show All Comments
+                </a>
+
+            }
+        </div>
+    </li>
+
+</ul>
+        }
+    }
+
+
+
+
+
+
+
+    else
+    {
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            <a href="~/Account/Login">
+                <i class="glyphicon glyphicon-user"></i>
+                LogIn
+            </a>
+        </li>
+        <li>
+            <a href="~/Account/Register">
+                <i class="glyphicon glyphicon-lock"></i>
+                Regester
+            </a>
+        </li>
+    </ul>
+}

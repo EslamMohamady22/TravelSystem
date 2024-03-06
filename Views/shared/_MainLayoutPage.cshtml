@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+ 
+    <link href="~/Content/Style.css" rel="stylesheet" />
+</head>
+<body>
+    <!--Navbar-->
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="#" class="navbar-brand">
+                    <img src="" />
+                </a>
+
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse " id="navbar">
+
+                <!--Partial Login-->
+               @Html.Partial("_login")
+
+                <ul class="nav navbar-nav navbar-right">
+
+                    <li>
+                        <a href="#" class="navbar-brand">
+                            <img src="" />
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            الرئيسية
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            اصناف العروض
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            حول الموقع
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            <i class="glyphicon glyphicon-home"></i>
+                            اتصل بنا
+                        </a>
+                    </li>
+
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <!--Navbar-->
+    <div class="container">
+        <div class="row">
+            @RenderBody()
+        </div>
+
+    </div>
+
+    <!--Footer-->
+    <footer class="footer navbar navbar-fixed-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 float">
+                    <h3>من نحن </h3>
+                    <p><p>
+                </div>
+
+                <div class="col-md-4 float">
+                    <h3>روبط هامه  </h3>
+                    <ul>
+                        <li> <a href="#">وظائف للقطاع العام </a></li>
+                        <li> <a href="#">وظائف للقطاع الخاص </a></li>
+                        <li> <a href="#">وظائف خارج البلاد </a></li>
+                        <li> <a href="#">وظائف متنوعه </a></li>
+                    </ul>
+
+                </div>
+
+                <div class="col-md-4 float">
+                    <h3>روبط هامه  </h3>
+                    <ul>
+                        <li> <a href="#">صفحتنا علي الفيس </a></li>
+                        <li> <a href="#"> صفحتنا علي تويتر</a></li>
+                        <li> <a href="#">صفحتنا علي الفيس </a></li>
+                        <li> <a href="#">اترك لنا رساله </a></li>
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+    <!--Footer-->
+   
+    <script src="~/Scripts/jquery-3.5.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
+</body>
+</html>

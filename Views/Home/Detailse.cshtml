@@ -1,0 +1,81 @@
+﻿@model JobOfferWebiste.Models.Job
+@using Microsoft.AspNet.Identity;
+@using WebApplication1.Models;
+
+@{
+    ViewBag.Title = "Detailse";
+    Layout = "~/Views/shared/_MainLayout.cshtml";
+    var db = new ApplicationDbContext();
+    var UserId = User.Identity.GetUserId();
+    var currentUser = db.Users.Where(a => a.Id == UserId).SingleOrDefault();
+}
+
+<h2>Detailse</h2>
+
+<div>
+    <h4>Job</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Category.CategoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Category.CategoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TripTitle)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TripTitle)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TripDetails)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TripDetails)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TripImage)
+        </dt>
+
+        <dd>
+            <img src="~/Uploads/@Html.DisplayFor(model => model.TripImage)"
+                 class="thumbnail" style="width: 62px;" />
+        </dd>
+
+
+
+    </dl>
+
+</div>
+
+@if (currentUser.UserType == "Traveler")
+{
+    <p>
+        @Html.ActionLink("Save that post", "Aplay", new { id = Model.Id }, new { @class = "btn btn-success" }) |
+        @Html.ActionLink("Add Comment", "AddComment", new { id = Model.Id }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Back To The Home", "Index", new { @class = "btn btn-success" })
+
+
+
+    </p>
+
+}
+@if (currentUser.UserType == "Agency")
+{
+<p>
+    @Html.ActionLink("Add Agency Comment", "AddAgencyComment", new { id = Model.Id }, new { @class = "btn btn-success" })
+    @Html.ActionLink("Back To The Home", "Index", new { @class = "btn btn-success" })
+    @Html.ActionLink("ViewAgencycomment", "ViewAgencycomment", new { id = Model.Id }, new { @class = "btn btn-success" })
+
+
+
+</p>
+
+}
